@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_horoscope"
+        android:icon="@drawable/ic_menu_horoscope"
+        android:title="@string/menu_action_horoscope" />
+
+    <item
+        android:id="@+id/action_zodiac"
+        android:icon="@drawable/ic_menu_zodiac"
+        android:title="@string/menu_action_zodiac" />
+
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/ic_menu_favorite"
+        android:title="@string/menu_action_favorite" />
+
+</menu>
