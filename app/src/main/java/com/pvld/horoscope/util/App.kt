@@ -1,6 +1,8 @@
 package com.pvld.horoscope.util
 
 import android.app.Application
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import com.facebook.stetho.Stetho
 import com.pvld.horoscope.data.database.AppDatabase
@@ -11,22 +13,29 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         instance = this
+
         database = Room.databaseBuilder(
             this,
             AppDatabase::class.java,
             DATABASE_NAME
         ).build()
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+
         Stetho.initializeWithDefaults(this);
     }
 
     companion object {
         lateinit var instance: App
-        private set
+            private set
 
         lateinit var database: AppDatabase
-        private set
+            private set
+
+        lateinit var preferences: SharedPreferences
+            private set
     }
 
 
