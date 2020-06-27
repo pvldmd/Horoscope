@@ -1,4 +1,4 @@
-package com.pvld.horoscope.domain.entities
+package com.pvld.horoscope.data.model
 
 import com.pvld.horoscope.R
 

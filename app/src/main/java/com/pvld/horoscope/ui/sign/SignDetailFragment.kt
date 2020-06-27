@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.sign
+package com.pvld.horoscope.ui.sign
 
 import android.os.Bundle
 import android.view.LayoutInflater

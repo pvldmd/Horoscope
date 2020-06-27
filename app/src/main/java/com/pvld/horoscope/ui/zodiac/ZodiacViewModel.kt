@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.zodiac
+package com.pvld.horoscope.ui.zodiac
 
 import androidx.lifecycle.ViewModel
 

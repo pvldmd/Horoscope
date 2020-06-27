@@ -1,10 +1,10 @@
-package com.pvld.horoscope.presentation.favorite
+package com.pvld.horoscope.ui.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pvld.horoscope.R
-import com.pvld.horoscope.domain.entities.FavoriteItem
+import com.pvld.horoscope.data.model.FavoriteItem
 
 class FavoriteItemAdapter(
     private val inflater: LayoutInflater,

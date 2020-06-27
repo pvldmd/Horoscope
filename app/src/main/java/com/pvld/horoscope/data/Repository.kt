@@ -8,7 +8,7 @@ import com.pvld.horoscope.data.mappers.FavoritesMapper
 import com.pvld.horoscope.data.mappers.HoroscopeEntityMapper
 import com.pvld.horoscope.data.network.RetrofitClient
 import com.pvld.horoscope.data.preferences.SharedPreferenceStringLiveData
-import com.pvld.horoscope.domain.entities.FavoriteItem
+import com.pvld.horoscope.data.model.FavoriteItem
 import com.pvld.horoscope.util.App
 import com.pvld.horoscope.util.CONSTANTS.MY_LOG_ERROR
 import com.pvld.horoscope.util.CONSTANTS.PREFS_CURRENT_SIGN

@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.horoscope
+package com.pvld.horoscope.ui.horoscope
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -1,11 +1,11 @@
-package com.pvld.horoscope.presentation.favorite
+package com.pvld.horoscope.ui.favorite
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pvld.horoscope.R
-import com.pvld.horoscope.domain.entities.FavoriteItem
+import com.pvld.horoscope.data.model.FavoriteItem
 
 class FavoriteItemViewHolder(
     itemView: View,

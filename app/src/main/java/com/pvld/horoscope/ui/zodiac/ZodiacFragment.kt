@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.zodiac
+package com.pvld.horoscope.ui.zodiac
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.pvld.horoscope.R
-import com.pvld.horoscope.presentation.sign.SignDetailFragment
+import com.pvld.horoscope.ui.sign.SignDetailFragment
 import kotlinx.android.synthetic.main.fragment_zodiac.*
 
 class ZodiacFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.favorite
+package com.pvld.horoscope.ui.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pvld.horoscope.R
-import com.pvld.horoscope.domain.entities.FavoriteItem
+import com.pvld.horoscope.data.model.FavoriteItem
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

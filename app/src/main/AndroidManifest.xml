@@ -12,12 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".presentation.selectsign.SelectSignActivity"></activity>
+        <activity android:name=".ui.selectsign.SelectSignActivity"></activity>
         <activity
-            android:name=".presentation.settings.SettingsActivity"
+            android:name=".ui.settings.SettingsActivity"
             android:label="@string/activity_settings_name"
             android:theme="@style/AppTheme" />
-        <activity android:name=".presentation.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

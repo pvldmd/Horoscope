@@ -15,7 +15,7 @@
         android:title="@string/preference_notifications_title"
         android:theme="@style/Preference.SwitchPreferenceCompat"/>
 
-    <com.pvld.horoscope.presentation.settings.TimePreference
+    <com.pvld.horoscope.ui.settings.TimePreference
         android:key="time"
         android:title="@string/preference_time_title"
         android:positiveButtonText="OK"

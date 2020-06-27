@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.selectsign
+package com.pvld.horoscope.ui.selectsign
 
 import android.os.Bundle
 import android.util.Log

@@ -1,10 +1,10 @@
-package com.pvld.horoscope.presentation.horoscope
+package com.pvld.horoscope.ui.horoscope
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.pvld.horoscope.presentation.horoscope.card.CardFragment
+import com.pvld.horoscope.ui.horoscope.card.CardFragment
 
 private const val PAGE_COUNT = 4
 

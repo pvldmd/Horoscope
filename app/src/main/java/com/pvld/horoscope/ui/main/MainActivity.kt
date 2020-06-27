@@ -1,22 +1,18 @@
-package com.pvld.horoscope.presentation.main
+package com.pvld.horoscope.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.preference.PreferenceManager
 import com.pvld.horoscope.R
 import com.pvld.horoscope.data.database.Horoscope
-import com.pvld.horoscope.presentation.favorite.FavoriteFragment
-import com.pvld.horoscope.presentation.horoscope.HoroscopeFragment
-import com.pvld.horoscope.presentation.selectsign.SelectSignActivity
-import com.pvld.horoscope.presentation.zodiac.ZodiacFragment
-import com.pvld.horoscope.util.CONSTANTS.MY_LOG_INFO
-import com.pvld.horoscope.util.CONSTANTS.PREFS_FIRST_START
+import com.pvld.horoscope.ui.favorite.FavoriteFragment
+import com.pvld.horoscope.ui.horoscope.HoroscopeFragment
+import com.pvld.horoscope.ui.selectsign.SelectSignActivity
+import com.pvld.horoscope.ui.zodiac.ZodiacFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 

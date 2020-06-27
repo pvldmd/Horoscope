@@ -1,9 +1,9 @@
-package com.pvld.horoscope.presentation.favorite
+package com.pvld.horoscope.ui.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pvld.horoscope.data.Repository
-import com.pvld.horoscope.domain.entities.FavoriteItem
+import com.pvld.horoscope.data.model.FavoriteItem
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel : ViewModel() {

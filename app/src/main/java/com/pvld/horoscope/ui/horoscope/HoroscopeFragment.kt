@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.horoscope
+package com.pvld.horoscope.ui.horoscope
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.pvld.horoscope.R
-import com.pvld.horoscope.presentation.settings.SettingsActivity
+import com.pvld.horoscope.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_horoscope.*
 
 

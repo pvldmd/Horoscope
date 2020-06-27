@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.selectsign
+package com.pvld.horoscope.ui.selectsign
 
 import androidx.lifecycle.ViewModel
 import com.pvld.horoscope.data.Repository

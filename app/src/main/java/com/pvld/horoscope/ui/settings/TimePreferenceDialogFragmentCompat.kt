@@ -1,4 +1,4 @@
-package com.pvld.horoscope.presentation.settings
+package com.pvld.horoscope.ui.settings
 
 
 import android.os.Build
