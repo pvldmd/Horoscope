@@ -1,5 +1,6 @@
 package com.pvld.horoscope.ui.horoscope
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +9,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.pvld.horoscope.R
+import com.pvld.horoscope.di.components.DaggerHoroscopeFragmentComponent
 import com.pvld.horoscope.ui.settings.SettingsActivity
+import com.pvld.horoscope.util.App
 import kotlinx.android.synthetic.main.fragment_horoscope.*
+import javax.inject.Inject
 
 
 class HoroscopeFragment : Fragment() {
@@ -21,6 +26,8 @@ class HoroscopeFragment : Fragment() {
         fun newInstance() = HoroscopeFragment()
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: HoroscopeViewModel
 
     override fun onCreateView(
@@ -43,9 +50,17 @@ class HoroscopeFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        DaggerHoroscopeFragmentComponent.builder()
+            .appComponent(App.appComponent)
+            .build()
+            .inject(this)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HoroscopeViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[HoroscopeViewModel::class.java]
 
         // Observe changes in the current zodiac sign
         viewModel.currentSign.observe(

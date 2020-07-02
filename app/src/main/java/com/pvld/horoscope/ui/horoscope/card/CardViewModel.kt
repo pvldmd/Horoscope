@@ -7,27 +7,28 @@ import com.pvld.horoscope.data.Repository
 import com.pvld.horoscope.data.database.Favorite
 import com.pvld.horoscope.data.database.Horoscope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CardViewModel : ViewModel() {
+class CardViewModel @Inject constructor(private val repository: Repository): ViewModel() {
 
-    val horoscopeAllObservable: LiveData<List<Horoscope>> = Repository.getAllData()
+    val horoscopeAllObservable: LiveData<List<Horoscope>> = repository.getAllData()
 
-    val currentSign: LiveData<String> = Repository.getCurrentSign()
+    val currentSign: LiveData<String> = repository.getCurrentSign()
 
     fun createFavorite (sign:String, date: String, text: String){
         viewModelScope.launch {
-            Repository.insertFavorite(Favorite(sign, date, text))
+            repository.insertFavorite(Favorite(sign, date, text))
         }
     }
 
     fun deleteFavorite (sign: String, date: String){
         viewModelScope.launch {
-            Repository.deleteFavorite(sign, date)
+            repository.deleteFavorite(sign, date)
         }
     }
 
     fun getOneFavorite (sign:String, date: String): LiveData<List<Favorite>> {
-        return Repository.getOneFavorite(sign, date)
+        return repository.getOneFavorite(sign, date)
     }
 
 }

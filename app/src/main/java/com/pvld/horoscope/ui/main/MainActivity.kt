@@ -4,25 +4,37 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.pvld.horoscope.R
 import com.pvld.horoscope.data.database.Horoscope
+import com.pvld.horoscope.di.components.DaggerMainActivityComponent
 import com.pvld.horoscope.ui.favorite.FavoriteFragment
 import com.pvld.horoscope.ui.horoscope.HoroscopeFragment
 import com.pvld.horoscope.ui.selectsign.SelectSignActivity
 import com.pvld.horoscope.ui.zodiac.ZodiacFragment
+import com.pvld.horoscope.util.App
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewModel: MainActivityViewModel by viewModels()
+        DaggerMainActivityComponent.builder()
+            .appComponent(App.appComponent)
+            .build()
+            .inject(this)
+
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainActivityViewModel::class.java]
 
         // At the first launch of the app, show the zodiac sign selection screen and loader
         if (viewModel.isFirstLaunch()) {

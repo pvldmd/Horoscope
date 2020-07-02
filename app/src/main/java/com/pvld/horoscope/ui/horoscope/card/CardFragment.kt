@@ -1,5 +1,6 @@
 package com.pvld.horoscope.ui.horoscope.card
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +11,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.pvld.horoscope.R
 import com.pvld.horoscope.data.database.Favorite
 import com.pvld.horoscope.data.database.Horoscope
+import com.pvld.horoscope.di.components.DaggerCardFragmentComponent
+import com.pvld.horoscope.util.App
 import kotlinx.android.synthetic.main.fragment_card.*
+import javax.inject.Inject
 
 
 private const val POSITION = "position"
 
 class CardFragment : Fragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: CardViewModel
     private var position: Int = 0
     private lateinit var currentSign: String
@@ -36,9 +42,17 @@ class CardFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_card, container, false)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        DaggerCardFragmentComponent.builder()
+            .appComponent(App.appComponent)
+            .build()
+            .inject(this)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CardViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[CardViewModel::class.java]
 
         // Observe changes in the current zodiac sign
         viewModel.currentSign.observe(
@@ -55,7 +69,11 @@ class CardFragment : Fragment() {
                 if (isFavorite) {
                     viewModel.deleteFavorite(currentSign, text_cardfr_date.text.toString())
                 } else {
-                    viewModel.createFavorite(currentSign, text_cardfr_date.text.toString(), text_cardfr_horoscope.text.toString())
+                    viewModel.createFavorite(
+                        currentSign,
+                        text_cardfr_date.text.toString(),
+                        text_cardfr_horoscope.text.toString()
+                    )
                 }
             }
         })

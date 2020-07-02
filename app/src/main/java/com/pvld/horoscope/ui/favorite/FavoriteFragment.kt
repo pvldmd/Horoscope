@@ -1,5 +1,6 @@
 package com.pvld.horoscope.ui.favorite
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pvld.horoscope.R
 import com.pvld.horoscope.data.model.FavoriteItem
+import com.pvld.horoscope.di.components.DaggerCardFragmentComponent
+import com.pvld.horoscope.di.components.DaggerFavoriteFragmentComponent
+import com.pvld.horoscope.util.App
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class FavoriteFragment : Fragment(), FavoriteItemAdapter.OnFavoriteClickListener {
 
@@ -20,6 +25,8 @@ class FavoriteFragment : Fragment(), FavoriteItemAdapter.OnFavoriteClickListener
         fun newInstance() = FavoriteFragment()
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: FavoriteViewModel
     private lateinit var items: ArrayList<FavoriteItem>
 
@@ -30,9 +37,17 @@ class FavoriteFragment : Fragment(), FavoriteItemAdapter.OnFavoriteClickListener
         return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        DaggerFavoriteFragmentComponent.builder()
+            .appComponent(App.appComponent)
+            .build()
+            .inject(this)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[FavoriteViewModel::class.java]
 
         //Set up the RecyclerView
         recycler_favorite.layoutManager = LinearLayoutManager(context)

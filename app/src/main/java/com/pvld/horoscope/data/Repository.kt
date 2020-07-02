@@ -1,33 +1,36 @@
 package com.pvld.horoscope.data
 
+import android.content.SharedPreferences
 import android.util.Log.i
 import androidx.lifecycle.LiveData
+import com.pvld.horoscope.data.database.AppDatabase
 import com.pvld.horoscope.data.database.Favorite
 import com.pvld.horoscope.data.database.Horoscope
 import com.pvld.horoscope.data.mappers.FavoritesMapper
 import com.pvld.horoscope.data.mappers.HoroscopeEntityMapper
-import com.pvld.horoscope.data.network.RetrofitClient
-import com.pvld.horoscope.data.preferences.SharedPreferenceStringLiveData
 import com.pvld.horoscope.data.model.FavoriteItem
-import com.pvld.horoscope.util.App
+import com.pvld.horoscope.data.network.HoroscopeApi
+import com.pvld.horoscope.data.preferences.SharedPreferenceStringLiveData
 import com.pvld.horoscope.util.CONSTANTS.MY_LOG_ERROR
 import com.pvld.horoscope.util.CONSTANTS.PREFS_CURRENT_SIGN
 import com.pvld.horoscope.util.CONSTANTS.PREFS_CURRENT_SIGN_DEFAULT
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-object Repository {
-
-    private val retrofitClient = RetrofitClient.create()
-    private val database = App.database
+class Repository @Inject constructor(
+    private val retrofitApi: HoroscopeApi,
+    private val database: AppDatabase,
+    private val preferences: SharedPreferences
+) {
 
     fun loadActualHoroscope(): Unit {
         // TODO: better error handling
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = retrofitClient.loadToday()
+                val response = retrofitApi.loadToday()
                 if (response.isSuccessful) {
                     val horoscopes = response.body()?.let { HoroscopeEntityMapper.from(it) }
                     if (horoscopes != null) {
@@ -55,15 +58,15 @@ object Repository {
     }
 
     fun setCurrentSign(sign: String) {
-        App.preferences.edit().putString(PREFS_CURRENT_SIGN, sign).apply()
+        preferences.edit().putString(PREFS_CURRENT_SIGN, sign).apply()
     }
 
     fun getPreferenceBoolean(key: String, defaultValue: Boolean): Boolean {
-        return App.preferences.getBoolean(key, defaultValue)
+        return preferences.getBoolean(key, defaultValue)
     }
 
     fun setPreferenceBoolean(key: String, value: Boolean) {
-        App.preferences.edit().putBoolean(key, value).apply()
+        preferences.edit().putBoolean(key, value).apply()
     }
 
     suspend fun getAllFavorites(): List<FavoriteItem> {

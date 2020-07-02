@@ -6,17 +6,27 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.pvld.horoscope.R
+import com.pvld.horoscope.di.components.DaggerSelectSignActivityComponent
+import com.pvld.horoscope.util.App
 import com.pvld.horoscope.util.CONSTANTS.MY_LOG_INFO
+import javax.inject.Inject
 
 
 class SelectSignActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: SelectSignViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_sign)
-        viewModel = ViewModelProvider(this).get(SelectSignViewModel::class.java)
+
+        DaggerSelectSignActivityComponent.builder()
+            .appComponent(App.appComponent)
+            .build()
+            .inject(this)
+        viewModel = ViewModelProvider(this, viewModelFactory)[SelectSignViewModel::class.java]
     }
 
     fun onClickSign(view: View) {
