@@ -4,7 +4,7 @@ import com.pvld.horoscope.data.network.entities.HoroscopeEntity
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface HoroscopeAPI {
+interface HoroscopeApi {
 
 
     @GET("daily/com.xml")

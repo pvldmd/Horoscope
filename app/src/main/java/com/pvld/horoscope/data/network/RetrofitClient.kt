@@ -11,7 +11,7 @@ object RetrofitClient {
         .addConverterFactory(SimpleXmlConverterFactory.create())
         .build()
 
-    fun create(): HoroscopeAPI {
-        return retrofit.create<HoroscopeAPI>(HoroscopeAPI::class.java)
+    fun create(): HoroscopeApi {
+        return retrofit.create<HoroscopeApi>(HoroscopeApi::class.java)
     }
 }
