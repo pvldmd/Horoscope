@@ -1,15 +1,17 @@
 package com.pvld.horoscope.ui.horoscope
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.pvld.horoscope.R
@@ -35,7 +37,9 @@ class HoroscopeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_horoscope, container, false)
+        val view = inflater.inflate(R.layout.fragment_horoscope, container, false)
+        setAnimations(view)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,6 +77,68 @@ class HoroscopeFragment : Fragment() {
             val intent = Intent(context, SettingsActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun setAnimations(view: View){
+        val iconView = view.findViewById<ImageView>(R.id.image_horoscope_signicon)
+        ObjectAnimator.ofFloat(iconView, View.TRANSLATION_Y, -1000f).apply {
+            duration = 0
+            start()
+        }
+        ObjectAnimator.ofFloat(iconView, View.TRANSLATION_Y, 0f).apply {
+            duration = 700
+            startDelay = 300
+            interpolator = android.view.animation.DecelerateInterpolator()
+            start()
+        }
+
+        val nameView = view.findViewById<TextView>(R.id.text_horoscope_signname)
+        ObjectAnimator.ofFloat(nameView, View.TRANSLATION_Y, -1000f).apply {
+            duration = 0
+            start()
+        }
+        ObjectAnimator.ofFloat(nameView, View.TRANSLATION_Y, 0f).apply {
+            duration = 800
+            startDelay = 200
+            interpolator = android.view.animation.DecelerateInterpolator()
+            start()
+        }
+
+        val datesView = view.findViewById<TextView>(R.id.text_horoscope_signdates)
+        ObjectAnimator.ofFloat(datesView, View.TRANSLATION_Y, -1000f).apply {
+            duration = 0
+            start()
+        }
+        ObjectAnimator.ofFloat(datesView, View.TRANSLATION_Y, 0f).apply {
+            duration = 1000
+            startDelay = 1
+            interpolator = android.view.animation.DecelerateInterpolator()
+            start()
+        }
+
+        val tabsView = view.findViewById<TabLayout>(R.id.tabs_horoscope)
+        ObjectAnimator.ofFloat(tabsView, View.ALPHA, 0f).apply {
+            duration = 0
+            start()
+        }
+        ObjectAnimator.ofFloat(tabsView, View.ALPHA, 1f).apply {
+            duration = 1000
+            startDelay = 1
+            start()
+        }
+
+        val pagerView = view.findViewById<ViewPager>(R.id.viewpager_horoscope)
+        ObjectAnimator.ofFloat(pagerView, View.TRANSLATION_Y, 1000f).apply {
+            duration = 0
+            start()
+        }
+        ObjectAnimator.ofFloat(pagerView, View.TRANSLATION_Y, 0f).apply {
+            duration = 1000
+            startDelay = 1
+            interpolator = android.view.animation.DecelerateInterpolator()
+            start()
+        }
+
     }
 
     private fun updateViews(sign: String) {
